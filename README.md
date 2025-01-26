@@ -9,8 +9,8 @@ Using a google sheet and App Script quickly distribute shifts to team members ba
 
 ### Functions
 In the sheet with the team availability go to the top tool bar and select **Scheduling >> Make Schedule** to generate a new sheet with assign shifts
- - Make sure the schedule table follows the format DATE, DAY, TIME, <team member 1>, ..., <team member n>
- - Make sure availability is marked with <span style="color: #00ff00;">#00ff00 green</span>
+ - Make sure the schedule table follows the format DATE, DAY, TIME, team member 1, ..., team member n
+ - Make sure availability is marked with <span style="color: #00ff00;">#00ff00 green
 
 In the sheet with the team availability go to the top tool bar and select **Scheduling >> Export Schedule** to generate a new sheet with assign shifts
 and then export it as a csv to your root dir in Google Drive  
