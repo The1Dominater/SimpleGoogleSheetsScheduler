@@ -3,7 +3,7 @@ Using a google sheet and App Script quickly distribute shifts to team members ba
 
 ### Setup
 1. In your Google Spreadsheet go to the **Extentions >> App Script**
-2. Replace the template code with the code provided [here](SimpleSheetsSheduler/scheduler.gs)
+2. Replace the template code with the code provided [here](scheduler.gs)
 3. Save the file with **ctl + s** or **cmd + s**
 4. Return to the Google Spreadsheets tab and refresh
 
