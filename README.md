@@ -1,5 +1,8 @@
 # Simple Sheets Scheduler
-Using a google sheet and App Script quickly distribute shifts to team members based on availablity
+Using a google sheet and App Script quickly distribute shifts to team members based on availablity of each team member.
+Assumes:
+ - 1 employee per shift
+ - Employee's all are willing to work equal number of shifts
 
 ### Setup
 1. In your Google Spreadsheet go to the **Extentions >> App Script**
@@ -8,7 +11,7 @@ Using a google sheet and App Script quickly distribute shifts to team members ba
 4. Return to the Google Spreadsheets tab and refresh
 
 ### Functions
-In the sheet with the team availability go to the top tool bar and select **Scheduling >> Make Schedule** to generate a new sheet with assign shifts
+In the sheet containing the team's Availability Table go to the tool bar and select **Scheduling >> Make Schedule** to generate a new sheet with assigned shifts
  - Make sure the schedule table follows the format DATE, DAY, TIME, team member 1, ..., team member n
  - Make sure availability is marked with <span style="color: #00ff00;">#00ff00 green
 
