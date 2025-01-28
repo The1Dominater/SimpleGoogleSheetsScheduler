@@ -11,9 +11,13 @@ Assumes:
 4. Return to the Google Spreadsheets tab and refresh
 
 ### Functions
-In the sheet containing the team's Availability Table go to the tool bar and select **Scheduling >> Make Schedule** to generate a new sheet with assigned shifts
- - Make sure the schedule table follows the format DATE, DAY, TIME, team member 1, ..., team member n
- - Make sure availability is marked with <span style="color: #00ff00;">#00ff00 green
+1. generateTemplate()
+In a blank sheet go to the top tool bar and select **Scheduling >> Make availablity template** to generate a template table for setting employee availablity
+and then have employees fill in available times with green and non available time withs red
 
-In the sheet with the team availability go to the top tool bar and select **Scheduling >> Export Schedule** to generate a new sheet with assign shifts
-and then export it as a csv to your root dir in Google Drive  
+2. assignShifts()
+In the sheet containing the team's Availability Table go to the tool bar and select **Scheduling >> Make Schedule** to generate a new sheet with assigned shifts
+   - Make sure the schedule table follows the format DATE, DAY, TIME, team member 1, ..., team member n
+   - Make sure availability is marked with #00ff00 green, all other colors will be considered unavailable
+
+
