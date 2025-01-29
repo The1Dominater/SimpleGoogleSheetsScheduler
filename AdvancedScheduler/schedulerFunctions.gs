@@ -1,4 +1,79 @@
+/**
+ * Staff object for storing information about staff members
+ */
+class StaffMember {
+  constructor(name, desiredNumShifts, availableShifts) {
+    this.name = name;
+    this.desiredNumShifts = desiredNumShifts;
+    this.availableShifts = availableShifts;
+  }
 
+  setDesiredNumShifts(desiredNumShifts) {
+    this.desiredNumShifts = desiredNumShifts;
+  }
+  addAvailability(shift) {
+    this.availableShifts.push(shift)
+  }
+
+  // Check if a worker is available for a given shift
+  isAvailable(shift) {
+    if (this.availableShifts.includes(shift) && (this.desiredNumShifts > 0)) {
+      return true;
+    }
+    return false;
+  }
+
+  // Assign the shift to the worker
+  assignShift(shift,shiftData) {
+    if (!this.availableShifts.includes(shift)) {
+      throw new Error("Slot " + shift + " not available for worker " + this.name);
+    }
+    // Remove assigned shift from available shifts
+    this.desiredNumShifts -= 1;
+    this.availableShifts = this.availableShifts.filter(s => s !== shift);
+
+    // Remove non-consecutive shifts from availability
+    if (REQUIRE_CONSECUTIVE_SHIFTS) {
+      const startingRow = 2
+      const shiftIndex = shift - startingRow
+
+      const dateIndex = shiftInfoLabels.indexOf("Date");
+      const startIndex = shiftInfoLabels.indexOf("Start Time");
+      const endIndex = shiftInfoLabels.indexOf("End Time");
+      
+      const dateObj = shiftData[shiftIndex][dateIndex];
+      const date = Utilities.formatDate(dateObj, timezone, "MM/dd/yyyy");
+      const startTimeObj = shiftData[shiftIndex][startIndex];
+      const startTime = Utilities.formatDate(startTimeObj, timezone, "hh:mm a");
+      const endTimeObj = shiftData[shiftIndex][endIndex];
+      const endTime = Utilities.formatDate(endTimeObj, timezone, "hh:mm a");
+      const shiftStart = parseDateTime(date, startTime);
+      const shiftEnd = parseDateTime(date, endTime);
+
+      for (const nextShift of this.availableShifts) {
+        const nextDateObj = shiftData[nextShift - startingRow][dateIndex];
+        const nextDate = Utilities.formatDate(nextDateObj, timezone, "MM/dd/yyyy");
+        const nextStartTimeObj = shiftData[nextShift - startingRow][startIndex];
+        const nextStartTime = Utilities.formatDate(nextStartTimeObj, timezone, "hh:mm a");
+        const nextEndTimeObj = shiftData[nextShift - startingRow][startIndex];
+        const nextEndTime = Utilities.formatDate(nextEndTimeObj, timezone, "hh:mm a");
+        const nextStart = parseDateTime(nextDate, nextStartTime);
+        const nextEnd = parseDateTime(nextDate, nextEndTime);
+
+        if (areShiftsOnSameDay(shiftEnd, nextStart)) {
+          // Remove from available shifts other shifts on the same day if they are not consecutive or exceed the maximum number of allowed working hours
+          if (!areShiftsConsecutive(shiftEnd, nextStart) || exceedsMaxShiftTime(shiftStart, shiftEnd, nextStart, nextEnd)) {
+            this.availableShifts = this.availableShifts.filter(s => s !== shift);
+          }
+        }
+        else {
+          // If the next shift available shift is over 24hrs away move on
+          break;
+        }
+      }
+    }
+  }
+}
 
 /** 
  * Scheduler function(greedy)
