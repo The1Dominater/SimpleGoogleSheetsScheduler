@@ -29,7 +29,7 @@ Assumes:
 
 ### Setup
 1. In your Google Spreadsheet go to the **Extentions >> App Script**
-2. Replace the template code with the code provided [here](/AdvancedScheduler)
+2. Insert the files [here](/AdvancedScheduler) into the App Script **Files**
 3. Save the file with **ctl + s** or **cmd + s**
 4. Return to the Google Spreadsheets tab and refresh
 
