@@ -40,7 +40,7 @@ In a blank sheet go to the top tool bar and select **Scheduling >> Make schedule
 Here is a preview of the generated example template:
 ![generatedTemplatePreview.png](/previews/generatedTemplatePreview.png)
 
-3. "Assign shifts" >> generateShiftAssignments()
+2. "Assign shifts" >> generateShiftAssignments()
 In the sheet containing the team's availabilty go to the tool bar and select **Scheduling >> Assign shifts** to generate a new sheet with assigned shifts
    - Make sure the schedule table follows the format of the generated template
    - Make sure availability is marked with green, all other colors will be considered unavailable
